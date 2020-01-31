@@ -19,7 +19,7 @@ BuildRequires:  python-devel
 BuildRequires:  elfutils-libelf-devel
 BuildRequires:  ncurses-devel
 BuildRequires:  make
-BuildRequires:  devtoolset-7-toolchain
+BuildRequires:  devtoolset-8-runtime
 BuildRequires:  ebpftoolsbuilder-llvm-clang
 BuildRequires:  git
 
@@ -99,7 +99,7 @@ cd bcc
 
 %build
 
-. /opt/rh/devtoolset-7/enable
+. /opt/rh/devtoolset-8/enable
 cd bcc
 %cmake3 . \
     -DCMAKE_BUILD_TYPE=RelWithDebInfo \

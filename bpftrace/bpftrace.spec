@@ -46,7 +46,7 @@ BuildRequires:  flex
 BuildRequires:  cmake3
 BuildRequires:  elfutils-libelf-devel
 BuildRequires:  zlib-devel
-BuildRequires:  devtoolset-7-gcc-c++
+BuildRequires:  devtoolset-8-runtime
 BuildRequires:  ebpftoolsbuilder-llvm-clang-libs
 
 # For static:
@@ -112,7 +112,7 @@ git checkout %{commitid}
 %endif
 
 %build
-. /opt/rh/devtoolset-7/enable
+. /opt/rh/devtoolset-8/enable
 %cmake3 . \
   -DCMAKE_BUILD_TYPE=Debug \
   -DBUILD_TESTING:BOOL=OFF \

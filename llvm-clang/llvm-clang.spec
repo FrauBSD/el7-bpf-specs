@@ -22,7 +22,7 @@ BuildRequires:  flex
 BuildRequires:  make
 BuildRequires:  libxml2-devel
 BuildRequires:  elfutils-libelf-devel
-BuildRequires:  devtoolset-7-toolchain
+BuildRequires:  devtoolset-8-runtime
 
 %description
 A build of LLVM and Clang to make bpftrace and BCC possible on
@@ -43,7 +43,7 @@ mkdir build
 
 %build
 
-. /opt/rh/devtoolset-7/enable
+. /opt/rh/devtoolset-8/enable
 cd build
 
 cmake3 .. \
