@@ -3,7 +3,7 @@
 #
 # $Title: Script to build bpftrace on CentOS 7.7+ $
 # $Copyright: 2020 Devin Teske. All rights reserved. $
-# $FrauBSD: el7-bpf-specs/build-all.sh 2020-01-31 13:39:50 -0800 freebsdfrau $
+# $FrauBSD: el7-bpf-specs/build-all.sh 2020-02-06 18:01:24 -0800 freebsdfrau $
 #
 ############################################################ GLOBALS
 
@@ -248,7 +248,14 @@ if ! quietly rpm -q ebpftoolsbuilder-llvm-clang; then
 		done
 		[ ! "$exists" ] || die "Failed update llvm-clang"
 	fi
-	eval2 sudo rpm -ivh $( rpmfiles llvm-clang/llvm-clang.spec ) || die
+	to_install=
+	for file in $( rpmfiles llvm-clang/llvm-clang.spec ); do
+		name=${file##*/}
+		name=${name%%-[0-9]*}
+		rpm -q $name && continue
+		to_install="$to_install $file"
+	done
+	eval2 sudo rpm -ivh $to_install || die
 fi
 build -x lua bcc
 
