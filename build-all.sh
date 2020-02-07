@@ -3,7 +3,7 @@
 #
 # $Title: Script to build bpftrace on CentOS 7.7+ $
 # $Copyright: 2020 Devin Teske. All rights reserved. $
-# $FrauBSD: el7-bpf-specs/build-all.sh 2020-02-06 18:01:24 -0800 freebsdfrau $
+# $FrauBSD: el7-bpf-specs/build-all.sh 2020-02-06 18:05:23 -0800 freebsdfrau $
 #
 ############################################################ GLOBALS
 
@@ -223,6 +223,7 @@ shift $(( $OPTIND - 1 ))
 #
 needed=
 quietly rpm -q gcc || needed="$needed gcc"
+quietly rpm -q rpmdevtools || needed="$needed rpmdevtools"
 [ -e /opt/rh/devtoolset-8/enable ] || needed="$needed devtoolset-8-runtime"
 [ ! "$needed" ] || eval2 sudo yum install -y $needed || die
 
