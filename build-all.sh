@@ -3,7 +3,7 @@
 #
 # $Title: Script to build bpftrace on CentOS 7.7+ $
 # $Copyright: 2020 Devin Teske. All rights reserved. $
-# $FrauBSD: el7-bpf-specs/build-all.sh 2020-02-06 18:05:23 -0800 freebsdfrau $
+# $FrauBSD: el7-bpf-specs/build-all.sh 2020-02-27 08:51:10 -0800 freebsdfrau $
 #
 ############################################################ GLOBALS
 
@@ -157,7 +157,7 @@ build()
 	for file in $( rpmfiles ${exclude:+-x"$exclude"} $tool/$tool.spec ); do
 		name="${file##*/}"
 		if [ -e "$file" ]; then
-			echo "$name exists"
+			echo "$file exists"
 			continue
 		fi
 		echo "$file does not exist"
@@ -278,7 +278,7 @@ if [ "$to_uninstall" ]; then
 		name="${file%%-[0-9]*}"
 		quietly rpm -q $name || continue
 		exists=1
-		echo "$name still installed"
+		echo "$file still installed"
 	done
 	[ ! "$exists" ] || die "Failed to update bcc"
 fi
